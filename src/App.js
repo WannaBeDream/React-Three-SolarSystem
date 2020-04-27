@@ -70,6 +70,7 @@ class App extends Component {
   state = {
     isStopPosition: false,
     isShowInfo: false,
+    isShowSysInfo: false,
     planets: planets,
     currentInfo:"",
   }
@@ -100,8 +101,9 @@ class App extends Component {
       1,      
       10000000
     );
-    this.camera.position.z = 20000;  
-  
+    // this.camera.position.z = 20000;  
+    this.camera.position.set(0,150000,150000);  
+    this.camera.lookAt(0,0,30000);
     // this.controls = new FirstPersonControls(this.camera, this.el);  
     // this.controls.movementSpeed = 20000;
     // this.controls.lookSpeed = 0.05; // скорость вращения 
@@ -284,6 +286,8 @@ this.scene.add(this.stars2);
   this.t=0;
   this.y=0;
 
+        
+
   // this.el.addEventListener('mousemove',(e) => { 
   //   this.y = parseInt(e.offsetY)
   // })
@@ -316,6 +320,30 @@ this.scene.add(this.stars2);
     // position
 
     if(!this.state.isStopPosition) {
+      
+      if(this.state.isShowSysInfo){
+
+        if(this.camera.position.z < this.sun.position.z+150000){
+          this.camera.position.z += 500;
+          this.camera.lookAt(0,0,30000);
+        } else {
+          this.elText.style.display = "block";
+        }
+        if(this.camera.position.y < this.sun.position.y+150000) {
+          this.camera.position.y += 500;
+          this.camera.lookAt(0,0,30000);
+        }
+        this.sun.scale.set(2,2,2);
+        this.saturn.scale.set(6,6,6);
+        this.venus.scale.set(6,6,6);
+        this.mercury.scale.set(6,6,6);
+        this.mars.scale.set(6,6,6);
+        this.jupiter.scale.set(6,6,6);
+        this.uran.scale.set(6,6,6);
+        this.neptune.scale.set(6,6,6);
+        this.pluto.scale.set(6,6,6);
+        this.earth.scale.set(6,6,6);
+      }
     this.earth.position.x =Math.sin(this.t*0.1)*30000;
     this.earth.position.z =Math.cos(this.t*0.1)*30000;
 
@@ -351,48 +379,121 @@ this.scene.add(this.stars2);
       if(this.state.isShowInfo){
         switch(this.state.currentInfo.name) {
         case 'Mercury' :
-            if(this.camera.position.z > this.mercury.position.z-100){
-              this.camera.position.z -= 80;
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.mercury.position);
+          }else if(this.camera.position.z > this.mercury.position.z-600){
+              this.camera.position.z -= 150;
               this.camera.lookAt(this.mercury.position);
             } else {
               this.elText.style.display = "block";
             }
-            if(this.camera.position.x < this.mercury.position.x-300) {
-              this.camera.position.x += 30;
-              this.camera.lookAt(this.mercury.position);
-            }
-            
+            if(this.camera.position.x < this.mercury.position.x-400) {
+              this.camera.position.x += 200;
+              this.camera.lookAt(this.mercury.position);} 
             break;
 
         case 'Venus' :
-            if(this.camera.position.z > this.venus.position.z-150){
-              this.camera.position.z -= 80;
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.venus.position);
+          }else if(this.camera.position.z > this.venus.position.z-200){
+              this.camera.position.z -= 200;
+              this.camera.lookAt(this.venus.position);
+            } else if(this.camera.position.z < this.venus.position.z-600){
+              this.camera.position.z += 200;
               this.camera.lookAt(this.venus.position);
             } else {
               this.elText.style.display = "block";
             }
-            if(this.camera.position.x < this.venus.position.x-450) {
-              this.camera.position.x += 30;
+            if(this.camera.position.x < this.venus.position.x-675) {
+              this.camera.position.x += 160;
+              this.camera.lookAt(this.venus.position);
+            } else if(this.camera.position.x > this.venus.position.x-500){
+              this.camera.position.x -= 160;
               this.camera.lookAt(this.venus.position);
             }
             
             break;
         case 'Mars' :
-            if(this.camera.position.z < this.mars.position.z-150){
-              this.camera.position.z += 80;
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.mars.position);
+          }else if(this.camera.position.z > this.mars.position.z-200){
+              this.camera.position.z -= 200;
+              this.camera.lookAt(this.mars.position);
+            } else if(this.camera.position.z < this.mars.position.z-600){
+              this.camera.position.z += 200;
               this.camera.lookAt(this.mars.position);
             } else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.mars.position.x-450) {
-              this.camera.position.x += 30;
+              this.camera.position.x += 80;
+              this.camera.lookAt(this.mars.position);
+            }  else if(this.camera.position.x > this.mars.position.x-350){
+              this.camera.position.x -= 80;
               this.camera.lookAt(this.mars.position);
             }
             
             break;
         case 'Jupiter' :
-            if(this.camera.position.z < this.jupiter.position.z-1050){
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.jupiter.position);
+          }else if(this.camera.position.z < this.jupiter.position.z-1050){
               this.camera.position.z += 200;
+              this.camera.lookAt(this.jupiter.position);
+            } else if(this.camera.position.z > this.jupiter.position.z-800){
+              this.camera.position.z -= 200;
               this.camera.lookAt(this.jupiter.position);
             } else {
               this.elText.style.display = "block";
@@ -400,12 +501,33 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.jupiter.position.x-1450) {
               this.camera.position.x += 200;
               this.camera.lookAt(this.jupiter.position);
+            }  else if (this.camera.position.x > this.jupiter.position.x-1200){
+              this.camera.position.x -= 200;
+              this.camera.lookAt(this.jupiter.position);
             }
             
             break;
         case 'Saturn' :
-            if(this.camera.position.z < this.saturn.position.z-400){
-              this.camera.position.z += 200;
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.saturn.position);
+          }else if(this.camera.position.z < this.saturn.position.z-450){
+              this.camera.position.z += 150;
+              this.camera.lookAt(this.saturn.position);
+            } else if(this.camera.position.z > this.saturn.position.z-200){
+              this.camera.position.z -= 150;
               this.camera.lookAt(this.saturn.position);
             } else {
               this.elText.style.display = "block";
@@ -413,12 +535,33 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.saturn.position.x-1200) {
               this.camera.position.x += 200;
               this.camera.lookAt(this.saturn.position);
+            } else if (this.camera.position.x > this.saturn.position.x-900){
+              this.camera.position.x -= 200;
+              this.camera.lookAt(this.saturn.position);
             }
             
             break;
         case 'Uran' :
-            if(this.camera.position.z < this.uran.position.z-330){
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.uran.position);
+          }else if(this.camera.position.z < this.uran.position.z-630){
               this.camera.position.z += 300;
+              this.camera.lookAt(this.uran.position);
+            } else if(this.camera.position.z > this.uran.position.z-300){
+              this.camera.position.z -= 150;
               this.camera.lookAt(this.uran.position);
             } else {
               this.elText.style.display = "block";
@@ -426,12 +569,33 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.uran.position.x-950) {
               this.camera.position.x += 300;
               this.camera.lookAt(this.uran.position);
+            } else if (this.camera.position.x > this.uran.position.x-600){
+              this.camera.position.x -= 150;
+              this.camera.lookAt(this.uran.position);
             }
             
             break;
         case 'Neptune' :
-            if(this.camera.position.z < this.neptune.position.z-330){
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.neptune.position);
+          }else if(this.camera.position.z < this.neptune.position.z-630){
               this.camera.position.z += 300;
+              this.camera.lookAt(this.neptune.position);
+            } else if(this.camera.position.z > this.neptune.position.z-300){
+              this.camera.position.z -= 150;
               this.camera.lookAt(this.neptune.position);
             } else {
               this.elText.style.display = "block";
@@ -439,12 +603,33 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.neptune.position.x-950) {
               this.camera.position.x += 300;
               this.camera.lookAt(this.neptune.position);
+            } else if (this.camera.position.x > this.neptune.position.x-600){
+              this.camera.position.x -= 150;
+              this.camera.lookAt(this.neptune.position);
             }
             
             break;
         case 'Pluto' :
-            if(this.camera.position.z < this.pluto.position.z-900){
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.pluto.position);
+          }else if(this.camera.position.z < this.pluto.position.z-900){
               this.camera.position.z += 300;
+              this.camera.lookAt(this.pluto.position);
+            } else if(this.camera.position.z > this.pluto.position.z-600){
+              this.camera.position.z -= 150;
               this.camera.lookAt(this.pluto.position);
             } else {
               this.elText.style.display = "block";
@@ -452,12 +637,33 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.pluto.position.x-1200) {
               this.camera.position.x += 300;
               this.camera.lookAt(this.pluto.position);
+            } else if (this.camera.position.x > this.pluto.position.x-900){
+              this.camera.position.x -= 150;
+              this.camera.lookAt(this.pluto.position);
             }
             
             break;
         case 'Earth' :
-            if(this.camera.position.z < this.earth.position.z-375){
-              this.camera.position.z += 80;
+          
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+          
+          if(this.camera.position.y > 0){
+              this.camera.position.y -= 1000;
+              this.camera.lookAt(this.earth.position);
+            }else if(this.camera.position.z < this.earth.position.z-600){
+              this.camera.position.z += 200;
+              this.camera.lookAt(this.earth.position);
+            } else if(this.camera.position.z > this.earth.position.z-400){
+              this.camera.position.z -= 200;
               this.camera.lookAt(this.earth.position);
             } else {
               this.elText.style.display = "block";
@@ -465,8 +671,34 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.earth.position.x-250) {
               this.camera.position.x += 80;
               this.camera.lookAt(this.earth.position);
+            } else if (this.camera.position.x > this.pluto.position.x-160){
+              this.camera.position.x -= 80;
+              this.camera.lookAt(this.pluto.position);
             }
             
+            break;
+        case 'Sun' :
+
+          this.sun.scale.set(1,1,1);
+          this.saturn.scale.set(1,1,1);
+          this.venus.scale.set(1,1,1);
+          this.mercury.scale.set(1,1,1);
+          this.mars.scale.set(1,1,1);
+          this.jupiter.scale.set(1,1,1);
+          this.uran.scale.set(1,1,1);
+          this.neptune.scale.set(1,1,1);
+          this.pluto.scale.set(1,1,1);
+          this.earth.scale.set(1,1,1);
+
+            if(this.camera.position.y > 0){
+              this.camera.position.y -= 1000;
+              this.camera.lookAt(this.sun.position);
+            } else if(this.camera.position.z > this.sun.position.z+6500){
+              this.camera.position.z -= 500;
+              this.camera.lookAt(this.sun.position);
+              }else {
+              this.elText.style.display = "block";
+            }
             break;
 
             default:
@@ -494,12 +726,23 @@ this.scene.add(this.stars2);
   };
   
   showInfo = (planetName) => {
-    this.camera.position.set(0,0,20000);
+    this.camera.position.set(0,150000,150000);
     this.elText.style.display = "none";
       this.setState({
         isStopPosition: true,
         isShowInfo: true,
+        isShowSysInfo: false,
         currentInfo: this.state.planets.find((planet)=> planet.name === planetName)
+      }) 
+    }
+  showSystemInfo = (systemName) => {
+    this.camera.position.set(0,0,50000);
+    this.elText.style.display = "none";
+      this.setState({
+        isStopPosition: false,
+        isShowInfo: false,
+        isShowSysInfo: true,
+        currentInfo: this.state.planets.find((sysData)=> sysData.name === systemName)
       }) 
     }
   
@@ -508,7 +751,7 @@ this.scene.add(this.stars2);
     return (
     <div style={style} ref={ref => (this.el = ref)} >
       {this.state.planets.map((planet,index)=>(
-        <input key={index} type="button" value={planet.name} className={`btn${planet.name}`} onClick={() =>{this.showInfo(`${planet.name}`)}}></input>
+        <input key={index} type="button" value={planet.name} className={`btn${planet.name}`} onClick={planet.type ==="planet" ? () =>{this.showInfo(`${planet.name}`)}:() =>{this.showSystemInfo(`${planet.name}`)}}></input>
       ))}
       <div id="planetDescription" ref={ref => (this.elText = ref)}>
         <h4>{this.state.currentInfo.name}</h4>

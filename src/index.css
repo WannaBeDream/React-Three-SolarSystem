@@ -112,6 +112,26 @@ code {
   border: 1px solid white;
   background: black;
 }
+.btnSun {
+  top:300px;
+  left: 20px;
+  position: absolute;
+  z-index: 1000;
+  font-size: 12px;
+  color: white;
+  border: 1px solid white;
+  background: black;
+}
+.btnSystem {
+  top:330px;
+  left: 20px;
+  position: absolute;
+  z-index: 1000;
+  font-size: 12px;
+  color: rgb(21, 186, 207);
+  border: 1px solid white;
+  background: black;
+}
 canvas {
  z-index: 0;
 }
