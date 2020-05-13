@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-      /* overflow добавли по видео уроку */
+      /* overflow добавили по видео уроку */
   overflow: hidden;  
   height: 100%;
   color: white;
@@ -137,6 +137,7 @@ canvas {
 }
 
 #planetDescription {
+  font-family: 'Segoe UI';
   width: 300px;
   position: absolute;
   z-index: 100;
