@@ -23,7 +23,7 @@ code {
 }
 
 .btnMercury {
-  top:30px;
+  top:130px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -33,7 +33,7 @@ code {
   background: black;
 }
 .btnVenus {
-  top:60px;
+  top:160px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -43,7 +43,7 @@ code {
   background: black;
 }
 .btnMars {
-  top:90px;
+  top:190px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -53,7 +53,7 @@ code {
   background: black;
 }
 .btnJupiter {
-  top:120px;
+  top:220px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -63,7 +63,7 @@ code {
   background: black;
 }
 .btnSaturn {
-  top:150px;
+  top:250px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -73,7 +73,7 @@ code {
   background: black;
 }
 .btnUran {
-  top:180px;
+  top:280px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -83,7 +83,7 @@ code {
   background: black;
 }
 .btnNeptune {
-  top:210px;
+  top:310px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -93,7 +93,7 @@ code {
   background: black;
 }
 .btnPluto {
-  top:240px;
+  top:340px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -103,7 +103,7 @@ code {
   background: black;
 }
 .btnEarth {
-  top:270px;
+  top:370px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -113,7 +113,7 @@ code {
   background: black;
 }
 .btnSun {
-  top:300px;
+  top:400px;
   left: 20px;
   position: absolute;
   z-index: 1000;
@@ -123,7 +123,7 @@ code {
   background: black;
 }
 .btnSystem {
-  top:330px;
+  top:430px;
   left: 20px;
   position: absolute;
   z-index: 1000;

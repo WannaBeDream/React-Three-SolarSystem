@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import './App.css'
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {FirstPersonControls} from "three/examples/jsm/controls/FirstPersonControls"
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import {FirstPersonControls} from "three/examples/jsm/controls/FirstPersonControls"
 import sunTexture from './Assets/sunTexture.png';
 import mercuryTexture from './Assets/mercuryTexture.jpg';
 import venusTexture from './Assets/venusTexture.jpg';
@@ -29,7 +29,6 @@ let createPlanet = function(radius,texture) {
     let planetTexture = new THREE.TextureLoader().load(this.texture);
     planetTexture.anisotropy = 8;
     let planetMaterialB = new THREE.MeshPhongMaterial({map: planetTexture});
- // const planetMaterial = new THREE.MeshNormalMaterial();
   
     let planet = new THREE.Mesh(planetGeometry,planetMaterialB);
     planet.castShadow = true;
@@ -101,15 +100,12 @@ class App extends Component {
       1,      
       10000000
     );
-    // this.camera.position.z = 20000;  
     this.camera.position.set(0,150000,150000);  
     this.camera.lookAt(0,0,30000);
     // this.controls = new FirstPersonControls(this.camera, this.el);  
     // this.controls.movementSpeed = 20000;
     // this.controls.lookSpeed = 0.05; // скорость вращения 
     this.renderer = new THREE.WebGLRenderer();
-    // this.renderer.shadowMap.enabled = true; //включает карту теней
-    // this.renderer.setClearColor(0xffffff);  // задний фон
     this.renderer.setSize(width, height);
     this.el.appendChild(this.renderer.domElement); 
     
@@ -241,7 +237,6 @@ this.scene.add(this.stars2);
   this.sunTexture = new THREE.TextureLoader().load(sunTexture);
   this.sunTexture.anisotropy = 8;
   this.sunMaterialB = new THREE.MeshPhongMaterial({emissiveMap: this.sunTexture, emissive:0xffffff});
-  // this.sunMaterial = new THREE.MeshNormalMaterial();
    
   this.sun = new THREE.Mesh(this.sunGeometry,this.sunMaterialB);
   this.scene.add(this.sun);
@@ -287,14 +282,6 @@ this.scene.add(this.stars2);
   this.y=0;
 
         
-
-  // this.el.addEventListener('mousemove',(e) => { 
-  //   this.y = parseInt(e.offsetY)
-  // })
-
-    // this.cameraHelper = new THREE.CameraHelper(this.light.shadow.camera);
-    // this.scene.add(this.cameraHelper);
-
   };
 
   
@@ -391,13 +378,13 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z > this.mercury.position.z-600){
+            this.camera.position.z -= 150;
+            this.camera.lookAt(this.mercury.position);
+          } else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.mercury.position);
-          }else if(this.camera.position.z > this.mercury.position.z-600){
-              this.camera.position.z -= 150;
-              this.camera.lookAt(this.mercury.position);
-            } else {
+          } else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.mercury.position.x-400) {
@@ -418,16 +405,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z > this.venus.position.z-200){
+            this.camera.position.z -= 200;
+            this.camera.lookAt(this.venus.position);
+          } else if(this.camera.position.z < this.venus.position.z-600){
+            this.camera.position.z += 200;
+            this.camera.lookAt(this.venus.position);
+          } else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.venus.position);
-          }else if(this.camera.position.z > this.venus.position.z-200){
-              this.camera.position.z -= 200;
-              this.camera.lookAt(this.venus.position);
-            } else if(this.camera.position.z < this.venus.position.z-600){
-              this.camera.position.z += 200;
-              this.camera.lookAt(this.venus.position);
-            } else {
+          }  else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.venus.position.x-675) {
@@ -452,16 +439,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z > this.mars.position.z-200){
+            this.camera.position.z -= 200;
+            this.camera.lookAt(this.mars.position);
+          } else if(this.camera.position.z < this.mars.position.z-600){
+            this.camera.position.z += 200;
+            this.camera.lookAt(this.mars.position);
+          } else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.mars.position);
-          }else if(this.camera.position.z > this.mars.position.z-200){
-              this.camera.position.z -= 200;
-              this.camera.lookAt(this.mars.position);
-            } else if(this.camera.position.z < this.mars.position.z-600){
-              this.camera.position.z += 200;
-              this.camera.lookAt(this.mars.position);
-            } else {
+          }  else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.mars.position.x-450) {
@@ -486,16 +473,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z < this.jupiter.position.z-1050){
+            this.camera.position.z += 200;
+            this.camera.lookAt(this.jupiter.position);
+          } else if(this.camera.position.z > this.jupiter.position.z-800){
+            this.camera.position.z -= 200;
+            this.camera.lookAt(this.jupiter.position);
+          } else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.jupiter.position);
-          }else if(this.camera.position.z < this.jupiter.position.z-1050){
-              this.camera.position.z += 200;
-              this.camera.lookAt(this.jupiter.position);
-            } else if(this.camera.position.z > this.jupiter.position.z-800){
-              this.camera.position.z -= 200;
-              this.camera.lookAt(this.jupiter.position);
-            } else {
+          }  else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.jupiter.position.x-1450) {
@@ -520,16 +507,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z < this.saturn.position.z-450){
+            this.camera.position.z += 150;
+            this.camera.lookAt(this.saturn.position);
+          } else if(this.camera.position.z > this.saturn.position.z-200){
+            this.camera.position.z -= 150;
+            this.camera.lookAt(this.saturn.position);
+          } else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.saturn.position);
-          }else if(this.camera.position.z < this.saturn.position.z-450){
-              this.camera.position.z += 150;
-              this.camera.lookAt(this.saturn.position);
-            } else if(this.camera.position.z > this.saturn.position.z-200){
-              this.camera.position.z -= 150;
-              this.camera.lookAt(this.saturn.position);
-            } else {
+          } else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.saturn.position.x-1200) {
@@ -554,16 +541,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z < this.uran.position.z-630){
+            this.camera.position.z += 300;
+            this.camera.lookAt(this.uran.position);
+          } else if(this.camera.position.z > this.uran.position.z-300){
+            this.camera.position.z -= 150;
+            this.camera.lookAt(this.uran.position);
+          } else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.uran.position);
-          }else if(this.camera.position.z < this.uran.position.z-630){
-              this.camera.position.z += 300;
-              this.camera.lookAt(this.uran.position);
-            } else if(this.camera.position.z > this.uran.position.z-300){
-              this.camera.position.z -= 150;
-              this.camera.lookAt(this.uran.position);
-            } else {
+          } else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.uran.position.x-950) {
@@ -588,16 +575,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
+          if(this.camera.position.z < this.neptune.position.z-630){
+            this.camera.position.z += 300;
+            this.camera.lookAt(this.neptune.position);
+          }else if(this.camera.position.z > this.neptune.position.z-300){
+            this.camera.position.z -= 150;
+            this.camera.lookAt(this.neptune.position);
+          }else if(this.camera.position.y > 0){
             this.camera.position.y -= 1000;
             this.camera.lookAt(this.neptune.position);
-          }else if(this.camera.position.z < this.neptune.position.z-630){
-              this.camera.position.z += 300;
-              this.camera.lookAt(this.neptune.position);
-            } else if(this.camera.position.z > this.neptune.position.z-300){
-              this.camera.position.z -= 150;
-              this.camera.lookAt(this.neptune.position);
-            } else {
+          }   else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.neptune.position.x-950) {
@@ -622,16 +609,16 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
-            this.camera.position.y -= 1000;
+          if(this.camera.position.z > this.pluto.position.z-600){
+            this.camera.position.z -= 150;
             this.camera.lookAt(this.pluto.position);
           }else if(this.camera.position.z < this.pluto.position.z-900){
-              this.camera.position.z += 300;
-              this.camera.lookAt(this.pluto.position);
-            } else if(this.camera.position.z > this.pluto.position.z-600){
-              this.camera.position.z -= 150;
-              this.camera.lookAt(this.pluto.position);
-            } else {
+            this.camera.position.z += 300;
+            this.camera.lookAt(this.pluto.position);
+          } else if(this.camera.position.y > 0){
+            this.camera.position.y -= 1000;
+            this.camera.lookAt(this.pluto.position);
+          }else {
               this.elText.style.display = "block";
             }
             if(this.camera.position.x < this.pluto.position.x-1200) {
@@ -656,14 +643,15 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
           
-          if(this.camera.position.y > 0){
-              this.camera.position.y -= 1000;
-              this.camera.lookAt(this.earth.position);
+
+          if(this.camera.position.z > this.earth.position.z-400){
+            this.camera.position.z -= 200;
+            this.camera.lookAt(this.earth.position);
             }else if(this.camera.position.z < this.earth.position.z-600){
               this.camera.position.z += 200;
               this.camera.lookAt(this.earth.position);
-            } else if(this.camera.position.z > this.earth.position.z-400){
-              this.camera.position.z -= 200;
+            }else if(this.camera.position.y > 0){
+              this.camera.position.y -= 1000;
               this.camera.lookAt(this.earth.position);
             } else {
               this.elText.style.display = "block";
@@ -671,9 +659,9 @@ this.scene.add(this.stars2);
             if(this.camera.position.x < this.earth.position.x-250) {
               this.camera.position.x += 80;
               this.camera.lookAt(this.earth.position);
-            } else if (this.camera.position.x > this.pluto.position.x-160){
+            } else if (this.camera.position.x > this.earth.position.x-160){
               this.camera.position.x -= 80;
-              this.camera.lookAt(this.pluto.position);
+              this.camera.lookAt(this.earth.position);
             }
             
             break;
@@ -690,13 +678,13 @@ this.scene.add(this.stars2);
           this.pluto.scale.set(1,1,1);
           this.earth.scale.set(1,1,1);
 
-            if(this.camera.position.y > 0){
+          if(this.camera.position.z > this.sun.position.z+6500){
+            this.camera.position.z -= 500;
+            this.camera.lookAt(this.sun.position);
+            }else if(this.camera.position.y > 0){
               this.camera.position.y -= 1000;
               this.camera.lookAt(this.sun.position);
-            } else if(this.camera.position.z > this.sun.position.z+6500){
-              this.camera.position.z -= 500;
-              this.camera.lookAt(this.sun.position);
-              }else {
+            } else {
               this.elText.style.display = "block";
             }
             break;
@@ -771,22 +759,11 @@ this.scene.add(this.stars2);
 
 
 export default class ContainerApp extends React.Component {
-  state = { isMounted: true };
 
   render() {
-    const { isMounted = true } = this.state;
     return (
       <>
-        { <App />
-        /* <button
-          onClick={() =>
-            this.setState(state => ({ isMounted: !state.isMounted }))
-          }
-        >
-          {isMounted ? "Unmount" : "Mount"} */}
-        {/* </button> */}
-        {/*  {isMounted && <App />} */}
-        {/* {isMounted && <div>Scroll to zoom, drag to rotate</div>} */}
+         <App />
       </>
     );
   }
